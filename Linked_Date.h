@@ -13,7 +13,7 @@ public:
 	~Date();
 };
 
-
+using namespace std;
 class LinkedList
 {
 private:
@@ -22,8 +22,13 @@ private:
 	{
 		Date data;
 		Node* next;
+		Node()
+		{
+			next = NULL;
+		}
 	}* Nodeptr; // allows Nodeptr to replace Node* 
 	Nodeptr head, curr, temp;
+
 public:
 	LinkedList();
 	/*LinkedList(const LinkedList& obj);*/

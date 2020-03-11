@@ -5,9 +5,9 @@ using namespace std;
 
 Date::Date()
 {
-	month = 0;
-	day = 0;
-	year = 0;
+	month = NULL;
+	day = NULL;
+	year = NULL;
 }
 Date::Date(int in_month, int in_day, int in_year)
 {
@@ -23,8 +23,9 @@ void Date::setValue(int in_month, int in_day, int in_year)
 }
 Date::~Date()
 {
-
-
+	month = NULL;
+	day = NULL;
+	year = NULL;
 }
 bool Date::operator== (const Date& right) 
 {
@@ -34,41 +35,42 @@ bool Date::operator== (const Date& right)
 //	LinkedList Def
 //********************
 
-LinkedList::LinkedList()
-{
+LinkedList::LinkedList()		//Initializes Obj with all pnts
+{								//set to null.
+	Date init;
 	head = NULL;
 	curr = NULL;
 	temp = NULL;
+	
+	
 }
-//LinkedList::LinkedList(const Date& obj)
-//{
-//	
-//}
-//const LinkedList& LinkedList::operator=(const Date& right)
-//{
-//	Nodeptr temp = new Node;
-//	temp->data = right;
-//
-//	return right;
-//}
+
 void LinkedList::Display_List()
 {
 	int num = 1;
+	cout << "**************************" << endl;
 	if (head != NULL)
 	{
 		curr = head;
-		do
+		temp = head;
+		if (curr->next != NULL)
 		{
+			while (curr->next != NULL)
+			{
+				cout << num << ". " << curr->data.month << '/' << curr->data.day << '/' << curr->data.year << endl;
+				curr = curr->next;
+				num++;
+			}
 			cout << num << ". " << curr->data.month << '/' << curr->data.day << '/' << curr->data.year << endl;
-			curr = curr->next;
-			num++;
-		} while (curr->next != NULL);
-		
+		}
+		else
+			cout << num << ". " << curr->data.month << '/' << curr->data.day << '/' << curr->data.year << endl;
 	}
 	else
 	{
 		cout << "No items in list to display." << endl;
 	}
+	cout << "**************************" << endl;
 }
 void LinkedList::popFront()
 {
@@ -144,9 +146,10 @@ void LinkedList::removeFront()
 	{
 		if (curr->next != NULL)
 		{
-			delete head;
+			temp = head;
 			head = curr->next;
 			curr = head;
+			delete temp;
 			cout << "Front node removed." << endl;
 		}
 		else

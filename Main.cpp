@@ -15,7 +15,7 @@ int main()
 				<< "2. Insert new node" << endl
 				<< "3. Remove node" << endl
 				<< "4. Find a node" << endl
-				<< "5. Display a node" << endl
+				<< "5. Display a node (front or back)" << endl
 				<< "6. Quit" << endl;
 		cin >> choice;
 		switch (choice)
@@ -51,9 +51,13 @@ int main()
 			List.Search_Print(List.Search(temp));
 			break;
 		case 5:
-			cout << "Enter a number for a date to print: " << endl;
+			cout << "1. Front" << endl
+				<< "2. Back" << endl;
 			cin >> choice_BF;
-			List.Search_Print(choice_BF - 1);
+			if (choice_BF == 1)
+				List.popFront();
+			else
+				List.popBack();
 
 			break;
 		case 6:
@@ -64,7 +68,7 @@ int main()
 
 
 
-
+	List.~LinkedList();
 
 
 	system("pause");
